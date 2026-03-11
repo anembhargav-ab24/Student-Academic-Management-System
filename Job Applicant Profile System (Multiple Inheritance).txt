@@ -1,0 +1,75 @@
+class PersonalInfo:
+    def __init__(self, name, dob, contact, email):
+        self.name = name
+        self.dob = dob
+        self.contact = contact
+        self.email = email
+
+    def display_personal(self):
+        print("Name:", self.name)
+        print("DOB:", self.dob)
+        print("Contact:", self.contact)
+        print("Email:", self.email)
+
+
+class Education(PersonalInfo):
+    def __init__(self, name, dob, contact, email, degree, university, year, cgpa):
+        PersonalInfo.__init__(self, name, dob, contact, email)
+        self.degree = degree
+        self.university = university
+        self.year = year
+        self.cgpa = cgpa
+
+    def display_education(self):
+        print("Degree:", self.degree)
+        print("University:", self.university)
+        print("Year of Graduation:", self.year)
+        print("CGPA:", self.cgpa)
+
+
+class Experience:
+    def __init__(self, company, role, years, skills):
+        self.company = company
+        self.role = role
+        self.years = years
+        self.skills = skills
+
+    def display_experience(self):
+        print("Company:", self.company)
+        print("Role:", self.role)
+        print("Experience:", self.years, "years")
+        print("Skills:", self.skills)
+
+
+class CandidateProfile(Education, Experience):
+    def __init__(self, name, dob, contact, email, degree, university, year, cgpa,
+                 company, role, years, skills):
+
+        Education.__init__(self, name, dob, contact, email, degree, university, year, cgpa)
+        Experience.__init__(self, company, role, years, skills)
+
+    def display_profile(self):
+        self.display_personal()
+        self.display_education()
+        self.display_experience()
+
+        if self.years > 5:
+            print("Eligible for: Senior Role")
+        else:
+            print("Eligible for: Junior Role")
+
+
+# Main Program
+c1 = CandidateProfile("Ravi", "1998-06-12", "9876543210", "ravi@gmail.com",
+                      "B.Tech", "JNTU", 2020, 8.2,
+                      "TCS", "Developer", 6, "Python, SQL")
+
+c2 = CandidateProfile("Priya", "2000-02-15", "9876541111", "priya@gmail.com",
+                      "B.Sc", "Andhra University", 2022, 7.8,
+                      "Infosys", "Tester", 3, "Manual Testing")
+
+print("\nCandidate 1 Profile")
+c1.display_profile()
+
+print("\nCandidate 2 Profile")
+c2.display_profile()
